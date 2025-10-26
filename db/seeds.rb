@@ -7,3 +7,9 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+# db/seeds.rb
+Family.find_or_create_by!(name: '自分の家庭') do |f|
+  f.is_default = true
+end
+Family.find_or_create_by!(name: '娘の家庭') 
+# ... 他の家庭もあれば追加
