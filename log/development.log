@@ -1,1 +1,60 @@
   [1m[35m (227.4ms)[0m  [1m[35mCREATE DATABASE "family_expense_tracker_development" ENCODING = 'unicode' /*application='FamilyExpenseTracker'*/[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[35mSET search_path TO public /*application='FamilyExpenseTracker'*/[0m
+  [1m[35m (668.1ms)[0m  [1m[35mCREATE DATABASE "family_expense_tracker_development" ENCODING = 'unicode' /*application='FamilyExpenseTracker'*/[0m
+  [1m[35m (242.2ms)[0m  [1m[35mCREATE DATABASE "family_expense_tracker_test" ENCODING = 'unicode' /*application='FamilyExpenseTracker'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='FamilyExpenseTracker'*/[0m
+  [1m[35m (107.4ms)[0m  [1m[35mCREATE DATABASE "family_expense_tracker_development" ENCODING = 'unicode' /*application='FamilyExpenseTracker'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='FamilyExpenseTracker'*/[0m
+  [1m[35m (508.8ms)[0m  [1m[35mCREATE DATABASE "family_expense_tracker_test" ENCODING = 'unicode' /*application='FamilyExpenseTracker'*/[0m
+  [1m[35m (20.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='FamilyExpenseTracker'*/[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='FamilyExpenseTracker'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5337950044485177420) /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (3.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-10-26 00:39:51.723935', '2025-10-26 00:39:51.723938') RETURNING "key" /*application='FamilyExpenseTracker'*/[0m
+Migrating to CreateFamilies (20251026003814)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='FamilyExpenseTracker'*/[0m
+  [1m[35m (19.1ms)[0m  [1m[35mCREATE TABLE "families" ("id" bigserial primary key, "name" character varying, "is_default" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251026003814') RETURNING "version" /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT /*application='FamilyExpenseTracker'*/[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(5337950044485177420) /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mFamily Load (1.5ms)[0m  [1m[34mSELECT "families".* FROM "families" WHERE "families"."name" = '自分の家庭' LIMIT 1 /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mFamily Create (1.4ms)[0m  [1m[32mINSERT INTO "families" ("name", "is_default", "created_at", "updated_at") VALUES ('自分の家庭', TRUE, '2025-10-26 00:39:59.350117', '2025-10-26 00:39:59.350117') RETURNING "id" /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mFamily Load (0.3ms)[0m  [1m[34mSELECT "families".* FROM "families" WHERE "families"."name" = '娘の家庭' LIMIT 1 /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mFamily Create (2.1ms)[0m  [1m[32mINSERT INTO "families" ("name", "is_default", "created_at", "updated_at") VALUES ('娘の家庭', NULL, '2025-10-26 00:39:59.359118', '2025-10-26 00:39:59.359118') RETURNING "id" /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT /*application='FamilyExpenseTracker'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5337950044485177420) /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='FamilyExpenseTracker'*/[0m
+Migrating to CreateReceipts (20251026014025)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK /*application='FamilyExpenseTracker'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5337950044485177420) /*application='FamilyExpenseTracker'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5337950044485177420) /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='FamilyExpenseTracker'*/[0m
+Migrating to CreateReceipts (20251026014025)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='FamilyExpenseTracker'*/[0m
+  [1m[35m (12.4ms)[0m  [1m[35mCREATE TABLE "receipts" ("id" bigserial primary key, "transaction_date" date, "store_name" character varying, "total_amount" decimal(10,2), "image_url" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251026014025') RETURNING "version" /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mTRANSACTION (5.2ms)[0m  [1m[35mCOMMIT /*application='FamilyExpenseTracker'*/[0m
+Migrating to CreateItems (20251026014200)
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN /*application='FamilyExpenseTracker'*/[0m
+  [1m[35m (26.5ms)[0m  [1m[35mCREATE TABLE "items" ("id" bigserial primary key, "receipt_id" bigint NOT NULL, "family_id" bigint NOT NULL, "name" character varying, "price" decimal, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_bdb9b8f606"
+FOREIGN KEY ("receipt_id")
+  REFERENCES "receipts" ("id")
+, CONSTRAINT "fk_rails_83a31efee6"
+FOREIGN KEY ("family_id")
+  REFERENCES "families" ("id")
+) /*application='FamilyExpenseTracker'*/[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE INDEX "index_items_on_receipt_id" ON "items" ("receipt_id") /*application='FamilyExpenseTracker'*/[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE INDEX "index_items_on_family_id" ON "items" ("family_id") /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251026014200') RETURNING "version" /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT /*application='FamilyExpenseTracker'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(5337950044485177420) /*application='FamilyExpenseTracker'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='FamilyExpenseTracker'*/[0m

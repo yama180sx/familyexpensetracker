@@ -76,5 +76,3 @@ group :development, :test do
   # デバッグ
   gem 'pry-rails'
 end
-
-bundle
