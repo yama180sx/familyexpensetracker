@@ -1,0 +1,45 @@
+# docker-compose.yml
+version: '3.9'
+
+services:
+  # 1. データベースサービス (PostgreSQL)
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: family_expense_tracker_development
+    ports:
+      - "5432:5432"
+
+  # 2. Railsアプリケーションサービス
+  web:
+    build: . # Dockerfileを使用してビルド
+    # Webサーバー起動コマンド
+    command: bundle exec puma -C config/puma.rb
+    # ホストPCのコードをコンテナにリアルタイムで反映
+    volumes:
+      - .:/app
+      - ./gcp-key.json:/app/gcp-key.json
+    # 接続ポート
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      # DB接続情報: ホスト名はサービス名の 'db'
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_HOST: db
+      RAILS_ENV: development
+      # 環境変数ファイル（.env）があれば指定
+      # env_file: .env 
+      # ★★★ ここにAPIキーを追記 ★★★
+      GOOGLE_APPLICATION_CREDENTIALS: /app/gcp-key.json
+      # ★★★★★★★★★★★★★★★★★★★★★★★★★★★
+
+# 永続化のためのボリューム定義
+volumes:
+  postgres_data:
