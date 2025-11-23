@@ -15,17 +15,20 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  # ★★★ 修正: サービス名 'db' をホスト名として指定 ★★★
+  host: db
+  # ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+  port: 5432
+  # ★★★ 修正: Docker Composeで設定した環境変数を使用 ★★★
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  # ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-
 
 development:
   <<: *default
   database: family_expense_tracker_development
-  
-  username: postgres
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
   # When left blank, PostgreSQL will use the default role. This is
@@ -60,8 +63,6 @@ test:
   <<: *default
   database: family_expense_tracker_test
 
-  username: postgres
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
